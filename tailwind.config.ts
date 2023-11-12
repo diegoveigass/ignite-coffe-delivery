@@ -8,10 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        baloo: 'var(--font-baloo)',
+        sans: 'var(--font-roboto)',
+      },
+      gridTemplateColumns: {
+        app: '1fr 480px',
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        app: "url('/background.png')",
       },
     },
   },
