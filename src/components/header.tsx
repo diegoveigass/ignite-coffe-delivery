@@ -5,7 +5,7 @@ import Link from 'next/link'
 export function Header() {
   const items = 0
   return (
-    <div className="flex items-center justify-between py-8">
+    <div className="flex items-center justify-between py-8 sticky bg-zinc-50 top-0 z-10">
       <Link href="/">
         <Image
           src="/logo.png"
