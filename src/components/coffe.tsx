@@ -1,36 +1,50 @@
 import Image from 'next/image'
+import type { Coffe as CoffeType } from '@/types/types'
 import { CoffeActions } from './coffe-actions'
 
-export function Coffe() {
+interface CoffeProps {
+  coffe: CoffeType
+}
+
+export function Coffe({ coffe }: CoffeProps) {
   return (
     <div className="flex flex-col items-center justify-center bg-zinc-100 rounded-lg p-5">
       <Image
         className="w-28 h-28 -mt-12"
-        src="/coffee.png"
+        src={coffe.imageUrl}
         width={120}
         height={120}
         quality={100}
         alt=""
       />
 
-      <span className="flex items-center justify-center mt-3 uppercase p-1 bg-amber-300 text-amber-600 text-xs font-bold rounded-md">
-        tradicional
-      </span>
+      <div className="flex gap-2 justify-center items-center">
+        {coffe.tag.map((coffeTag) => (
+          <span
+            key={coffeTag}
+            className="flex items-center justify-center mt-3 uppercase p-1 bg-amber-300 text-amber-600 text-xs font-bold rounded-md"
+          >
+            {coffeTag}
+          </span>
+        ))}
+      </div>
 
       <div className="flex flex-col items-center justify-center mt-4 gap-1">
-        <span className="text-xl font-bold font-baloo">
-          Expresso tradicional
-        </span>
-        <p className="text-sm text-zinc-500 text-center">
-          O tradicional café feito com água quente e grãos moídos
-        </p>
+        <span className="text-xl font-bold font-baloo">{coffe.name}</span>
+        <p className="text-sm text-zinc-500 text-center">{coffe.description}</p>
       </div>
 
       <div className="flex items-center justify-between mt-8 w-full">
         <span className="text-sm flex items-baseline justify-start">
-          R$ <span className="font-bold font-baloo text-2xl">9,90</span>
+          R${' '}
+          <span className="font-bold font-baloo text-2xl">
+            {coffe.price.toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
         </span>
-        <CoffeActions />
+        <CoffeActions coffe={coffe} />
       </div>
     </div>
   )

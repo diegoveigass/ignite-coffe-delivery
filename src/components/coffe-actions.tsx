@@ -1,13 +1,19 @@
 'use client'
 
+import { useCart } from '@/contexts/cart-context'
+import { Coffe } from '@/types/types'
 import { Minus, Plus, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 
-export function CoffeActions() {
+export function CoffeActions({ coffe }: { coffe: Coffe }) {
   const [count, setCount] = useState(0)
+  const { addToCart } = useCart()
 
   function handleAddToCart() {
-    // to do
+    if (count === 0) return
+
+    addToCart(coffe, count)
+    setCount(0)
   }
 
   return (
@@ -15,7 +21,12 @@ export function CoffeActions() {
       <div className="flex items-center justify-center relative">
         <button
           className="relative text-2xl text-violet-600 left-6"
-          onClick={() => setCount((state) => state - 1)}
+          onClick={() =>
+            setCount((state) => {
+              if (state <= 0) return 0
+              return state - 1
+            })
+          }
         >
           <Minus className="h-3 w-3" />
         </button>
@@ -27,7 +38,11 @@ export function CoffeActions() {
         />
         <button
           className="relative text-2xl text-violet-600 right-6"
-          onClick={() => setCount((state) => state + 1)}
+          onClick={() =>
+            setCount((state) => {
+              return state + 1
+            })
+          }
         >
           <Plus className="h-3 w-3" />
         </button>

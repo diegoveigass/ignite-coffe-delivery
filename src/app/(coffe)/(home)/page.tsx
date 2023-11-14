@@ -1,6 +1,42 @@
 import { Coffe } from '@/components/coffe'
+import type { Coffe as CoffeType } from '@/types/types'
 import { Coffee, Container, ShoppingCart, Timer } from 'lucide-react'
 import Image from 'next/image'
+
+const coffes: CoffeType[] = [
+  {
+    id: '1',
+    imageUrl: '/coffee.png',
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+    tag: ['tradicional'],
+  },
+  {
+    id: '2',
+    imageUrl: '/coffee2.png',
+    name: 'Expresso Americano',
+    description: 'Expresso diluído, menos intenso que o tradicional',
+    price: 13.9,
+    tag: ['tradicional'],
+  },
+  {
+    id: '3',
+    imageUrl: '/coffee3.png',
+    name: 'Expresso Gelado',
+    description: 'Bebida preparada com café expresso e cubos de gelo',
+    price: 5.9,
+    tag: ['tradicional', 'gelado'],
+  },
+  {
+    id: '4',
+    imageUrl: '/coffee4.png',
+    name: 'Café com Leite',
+    description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    price: 7.9,
+    tag: ['tradicional', 'com leite'],
+  },
+]
 
 export default function Home() {
   return (
@@ -52,7 +88,9 @@ export default function Home() {
       <div className="flex flex-col gap-14">
         <h1 className="text-4xl font-baloo font-bold">Nossos cafés</h1>
         <div className="grid grid-cols-4 gap-x-8 gap-y-10">
-          <Coffe />
+          {coffes.map((coffe) => (
+            <Coffe key={coffe.id} coffe={coffe} />
+          ))}
         </div>
       </div>
     </div>
