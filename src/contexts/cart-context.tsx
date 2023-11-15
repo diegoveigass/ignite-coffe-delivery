@@ -24,7 +24,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (productInCart) {
         return state.map((item) => {
           if (item.id === coffe.id) {
-            return { ...item, quantity }
+            return { ...item, quantity: item.quantity + quantity }
           } else {
             return item
           }

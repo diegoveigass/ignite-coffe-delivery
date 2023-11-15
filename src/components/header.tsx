@@ -1,4 +1,4 @@
-import { MapPin, ShoppingCart } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CartButton } from './cart-button'
