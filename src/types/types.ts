@@ -6,3 +6,7 @@ export interface Coffe {
   imageUrl: string
   tag: string[]
 }
+
+export interface CoffeCart extends Coffe {
+  quantity: number
+}

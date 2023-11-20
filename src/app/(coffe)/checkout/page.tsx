@@ -1,4 +1,5 @@
 import { CoffesSelected } from '@/components/coffes-selected'
+import { FooterTotal } from '@/components/footer-total'
 import { SelectedPayment } from '@/components/selected-payment'
 import { DollarSign, MapPin } from 'lucide-react'
 
@@ -87,23 +88,10 @@ export default function Checkout() {
       </div>
       <div className="flex flex-col gap-10">
         <h1 className="text-lg font-bold font-baloo">Cafés selecionados</h1>
-        <div className="bg-zinc-100 w-11/12 ml-auto p-10 flex flex-col gap-8">
+        <div className="bg-zinc-100 w-11/12 ml-auto p-10 flex flex-col gap-8 rounded-tl-xl rounded-br-xl rounded-tr-coffeSelected rounded-bl-coffeSelected">
           <CoffesSelected />
           <div className="h-px w-full bg-zinc-400" />
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between">
-              <span className="text-base">Total de Items</span>
-              <span className="text-lg">R$ 29,90</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-base">Entrega</span>
-              <span className="text-lg">R$ 3,50</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-3xl font-bold">Total de Items</span>
-              <span className="text-3xl font-bold">R$ 33,20</span>
-            </div>
-          </div>
+          <FooterTotal />
         </div>
       </div>
     </div>

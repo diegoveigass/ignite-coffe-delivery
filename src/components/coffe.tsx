@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import type { Coffe as CoffeType } from '@/types/types'
+import type { CoffeCart } from '@/types/types'
 import { CoffeActions } from './coffe-actions'
 
 interface CoffeProps {
-  coffe: CoffeType
+  coffe: CoffeCart
 }
 
 export function Coffe({ coffe }: CoffeProps) {

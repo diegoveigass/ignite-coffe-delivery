@@ -1,5 +1,5 @@
 import { Coffe } from '@/components/coffe'
-import type { Coffe as CoffeType } from '@/types/types'
+import type { CoffeCart, Coffe as CoffeType } from '@/types/types'
 import { Coffee, Container, ShoppingCart, Timer } from 'lucide-react'
 import Image from 'next/image'
 
@@ -89,7 +89,7 @@ export default function Home() {
         <h1 className="text-4xl font-baloo font-bold">Nossos cafés</h1>
         <div className="grid grid-cols-4 gap-x-8 gap-y-10">
           {coffes.map((coffe) => (
-            <Coffe key={coffe.id} coffe={coffe} />
+            <Coffe key={coffe.id} coffe={coffe as CoffeCart} />
           ))}
         </div>
       </div>

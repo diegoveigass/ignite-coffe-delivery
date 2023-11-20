@@ -18,6 +18,9 @@ const config: Config = {
       backgroundImage: {
         app: "url('/background.png')",
       },
+      borderRadius: {
+        coffeSelected: '2.75rem',
+      },
     },
   },
   plugins: [],
