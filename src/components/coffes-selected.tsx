@@ -9,34 +9,42 @@ export function CoffesSelected() {
 
   return (
     <div className="flex flex-col gap-12">
-      {items.map((item) => {
-        return (
-          <div key={item.id} className="flex justify-between">
-            <div className="flex gap-5">
-              <Image
-                className="w-16 h-16"
-                src={item.imageUrl}
-                width={64}
-                height={64}
-                quality={100}
-                alt=""
-              />
-              <div className="flex flex-col gap-2">
-                <span className="ml-3">{item.name}</span>
-                <CoffeActions coffe={item} isCheckout />
+      {items.length === 0 ? (
+        <div className="flex items-center justify-center">
+          <h1 className="font-bold text-2xl font-baloo">
+            Nenhum café foi adicionado ao carrinho
+          </h1>
+        </div>
+      ) : (
+        items.map((item) => {
+          return (
+            <div key={item.id} className="flex justify-between">
+              <div className="flex gap-5">
+                <Image
+                  className="w-16 h-16"
+                  src={item.imageUrl}
+                  width={64}
+                  height={64}
+                  quality={100}
+                  alt=""
+                />
+                <div className="flex flex-col gap-2">
+                  <span className="ml-3">{item.name}</span>
+                  <CoffeActions coffe={item} isCheckout />
+                </div>
               </div>
+              <span className="font-bold text-base text-zinc-700">
+                {(item.quantity * item.price).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
             </div>
-            <span className="font-bold text-base text-zinc-700">
-              {(item.quantity * item.price).toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </span>
-          </div>
-        )
-      })}
+          )
+        })
+      )}
     </div>
   )
 }
