@@ -9,6 +9,7 @@ interface CartContextProps {
   incrementCoffeQuantity: (coffeId: string) => void
   decrementCoffeQuantity: (coffeId: string) => void
   removeFromCart: (coffeId: string) => void
+  clearCart: () => void
 }
 
 const CartContext = createContext({} as CartContextProps)
@@ -67,6 +68,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCartItems((state) => state.filter((item) => item.id !== coffeId))
   }
 
+  function clearCart() {
+    setCartItems([])
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -75,6 +80,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         incrementCoffeQuantity,
         decrementCoffeQuantity,
         removeFromCart,
+        clearCart,
       }}
     >
       {children}

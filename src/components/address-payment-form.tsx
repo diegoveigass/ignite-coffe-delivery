@@ -12,6 +12,8 @@ import {
 } from 'lucide-react'
 
 import * as RadioGroup from '@radix-ui/react-radio-group'
+import { useRouter } from 'next/navigation'
+import { useCart } from '@/contexts/cart-context'
 
 const createCheckoutFormSchema = z.object({
   cep: z.string().max(8).min(8),
@@ -27,9 +29,12 @@ const createCheckoutFormSchema = z.object({
   payment: z.string().min(1, 'Payment must be informed'),
 })
 
-type CreateCheckoutFormData = z.infer<typeof createCheckoutFormSchema>
+export type CreateCheckoutFormData = z.infer<typeof createCheckoutFormSchema>
 
 export function AddressPaymentForm() {
+  const router = useRouter()
+  const { clearCart } = useCart()
+
   const {
     register,
     handleSubmit,
@@ -39,8 +44,11 @@ export function AddressPaymentForm() {
     resolver: zodResolver(createCheckoutFormSchema),
   })
 
-  function createCheckout(data: any) {
-    console.log(data)
+  function createCheckout(data: CreateCheckoutFormData) {
+    const params = new URLSearchParams()
+    params.set('address', JSON.stringify(data))
+    router.push(`/success?${params}`)
+    clearCart()
   }
 
   return (

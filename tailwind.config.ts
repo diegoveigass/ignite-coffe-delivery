@@ -21,6 +21,9 @@ const config: Config = {
       borderRadius: {
         coffeSelected: '2.75rem',
       },
+      width: {
+        successWidth: '30rem',
+      },
     },
   },
   plugins: [],
